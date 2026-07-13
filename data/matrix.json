@@ -1,0 +1,106 @@
+[
+  {
+    "tactic": "Reconnaissance",
+    "coverage": {
+      "T1_Resources": "None",
+      "T2_SecuredComms": "None",
+      "T3_PerSessionAccess": "None",
+      "T4_DynamicPolicy": "None",
+      "T5_MonitorIntegrity": "Partial",
+      "T6_DynamicAuth": "None",
+      "T7_PostureData": "Partial"
+    },
+    "rationale": "ZTA governs access, not external observability. Encrypting a channel does not stop black-box probing against a public-facing API (revised from Partial to None on T2 after adversarial review). Monitoring partially detects probing after it occurs but does not prevent it."
+  },
+  {
+    "tactic": "ResourceDevelopment",
+    "coverage": {
+      "T1_Resources": "None",
+      "T2_SecuredComms": "None",
+      "T3_PerSessionAccess": "None",
+      "T4_DynamicPolicy": "None",
+      "T5_MonitorIntegrity": "None",
+      "T6_DynamicAuth": "None",
+      "T7_PostureData": "None"
+    },
+    "rationale": "Attacker infrastructure/tooling is built entirely outside the organisation's boundary. ZTA has no applicable control surface here. Unanimous agreement across all reviewers."
+  },
+  {
+    "tactic": "InitialAccess",
+    "coverage": {
+      "T1_Resources": "Partial",
+      "T2_SecuredComms": "Full",
+      "T3_PerSessionAccess": "Partial",
+      "T4_DynamicPolicy": "Partial",
+      "T5_MonitorIntegrity": "Partial",
+      "T6_DynamicAuth": "Full",
+      "T7_PostureData": "Partial"
+    },
+    "rationale": "Classic ZTA design target. Strong authentication and secured communications directly mitigate unauthorized entry attempts. T1 kept at Partial: resource definition is necessary but not sufficient without enforcement via T6."
+  },
+  {
+    "tactic": "MLModelAccess",
+    "coverage": {
+      "T1_Resources": "Partial",
+      "T2_SecuredComms": "Partial",
+      "T3_PerSessionAccess": "Partial",
+      "T4_DynamicPolicy": "Partial",
+      "T5_MonitorIntegrity": "Partial",
+      "T6_DynamicAuth": "Partial",
+      "T7_PostureData": "Partial"
+    },
+    "rationale": "Revised from Full to Partial on T1 and T6 after adversarial review. Model inversion and extraction attacks (Fredrikson et al., 2015; OWASP ML03:2023) succeed through legitimate, fully-authenticated queries. ZTA gates entry to the model but is blind to adversarial exploitation of the model's mathematical behaviour once access is authorised."
+  },
+  {
+    "tactic": "PromptInjection",
+    "coverage": {
+      "T1_Resources": "None",
+      "T2_SecuredComms": "None",
+      "T3_PerSessionAccess": "None",
+      "T4_DynamicPolicy": "None",
+      "T5_MonitorIntegrity": "Partial",
+      "T6_DynamicAuth": "None",
+      "T7_PostureData": "Partial"
+    },
+    "rationale": "Headline finding. Malicious content arrives through an already-authenticated, already-authorized channel. Revised T1 from Partial to None after adversarial review: the 'confused deputy' problem (Hardy, 1988) means a hijacked LLM with a legitimate service identity to a downstream resource (e.g. RAG database) weaponizes that identity; resource segmentation does not stop a payload riding on authorized architecture. Documented as an indirect prompt injection technique in MITRE ATLAS."
+  },
+  {
+    "tactic": "Exfiltration",
+    "coverage": {
+      "T1_Resources": "Partial",
+      "T2_SecuredComms": "Full",
+      "T3_PerSessionAccess": "Partial",
+      "T4_DynamicPolicy": "Partial",
+      "T5_MonitorIntegrity": "Partial",
+      "T6_DynamicAuth": "Partial",
+      "T7_PostureData": "Full"
+    },
+    "rationale": "Exfiltration is fundamentally a network-behaviour problem, which secured comms and posture telemetry are designed around. T5 revised from Full to Partial: device/asset integrity monitoring is an indirect signal, not a direct data-loss-prevention control."
+  },
+  {
+    "tactic": "Impact",
+    "coverage": {
+      "T1_Resources": "Partial",
+      "T2_SecuredComms": "None",
+      "T3_PerSessionAccess": "None",
+      "T4_DynamicPolicy": "Partial",
+      "T5_MonitorIntegrity": "Partial",
+      "T6_DynamicAuth": "None",
+      "T7_PostureData": "Partial"
+    },
+    "rationale": "Once compromise or malicious output generation has already occurred, ZTA's preventative tenets have limited remaining relevance. Kept at Partial for T5/T7: detection after the fact does not close the tactic, it only surfaces it."
+  },
+  {
+    "tactic": "AISupplyChainCompromise",
+    "coverage": {
+      "T1_Resources": "Partial",
+      "T2_SecuredComms": "Partial",
+      "T3_PerSessionAccess": "None",
+      "T4_DynamicPolicy": "Partial",
+      "T5_MonitorIntegrity": "Partial",
+      "T6_DynamicAuth": "None",
+      "T7_PostureData": "Partial"
+    },
+    "rationale": "Poisoned datasets or compromised third-party model weights are not addressed by per-session access or dynamic authentication. T5 revised from None to Partial: cryptographic hash and provenance verification of ingested artifacts is a legitimate extension of integrity monitoring, though it requires explicit tooling most SME ZTA deployments lack in practice."
+  }
+]

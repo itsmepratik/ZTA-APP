@@ -1,0 +1,108 @@
+[
+  {
+    "id": "Q1",
+    "tenet": "T1_Resources",
+    "text": "Does your organisation maintain a complete, up-to-date inventory of all data sources, applications, and services (including cloud and third-party systems) that are treated as protected resources?"
+  },
+  {
+    "id": "Q2",
+    "tenet": "T1_Resources",
+    "text": "Are AI/ML models, model APIs, and training datasets explicitly classified and inventoried as protected resources, in the same way as databases or file servers?"
+  },
+  {
+    "id": "Q3",
+    "tenet": "T1_Resources",
+    "text": "When a new application, API, or third-party integration is added, is it formally registered as a resource before it is granted any access to your network or data?"
+  },
+  {
+    "id": "Q4",
+    "tenet": "T2_SecuredComms",
+    "text": "Is all communication between users, services, and applications encrypted in transit, regardless of whether the connection originates inside or outside your network perimeter?"
+  },
+  {
+    "id": "Q5",
+    "tenet": "T2_SecuredComms",
+    "text": "Do you enforce mutual authentication (not just one-directional trust) between internal services, including between an AI application and the databases or APIs it calls?"
+  },
+  {
+    "id": "Q6",
+    "tenet": "T2_SecuredComms",
+    "text": "Are communications with third-party AI model providers or inference APIs secured and monitored to the same standard as internal traffic?"
+  },
+  {
+    "id": "Q7",
+    "tenet": "T3_PerSessionAccess",
+    "text": "Is access to sensitive resources granted only for the duration of a single session, with re-verification required for each new session rather than a persistent standing access grant?"
+  },
+  {
+    "id": "Q8",
+    "tenet": "T3_PerSessionAccess",
+    "text": "If a user or service account is compromised mid-session, can that specific session be revoked immediately without waiting for a scheduled credential expiry?"
+  },
+  {
+    "id": "Q9",
+    "tenet": "T3_PerSessionAccess",
+    "text": "For AI-integrated workflows (e.g. an LLM calling internal tools or APIs on a user's behalf), is each individual tool call treated as its own access decision rather than inheriting blanket session trust?"
+  },
+  {
+    "id": "Q10",
+    "tenet": "T4_DynamicPolicy",
+    "text": "Are access decisions made dynamically based on real-time context (user role, device health, location, behaviour), rather than static, pre-assigned permissions?"
+  },
+  {
+    "id": "Q11",
+    "tenet": "T4_DynamicPolicy",
+    "text": "Does your access policy engine account for anomalous request patterns (e.g. unusually high query volume against a model API) and adjust access in response?"
+  },
+  {
+    "id": "Q12",
+    "tenet": "T4_DynamicPolicy",
+    "text": "Are third-party and open-source AI components (pre-trained models, libraries, datasets) subject to a defined approval policy before they are integrated into production systems?"
+  },
+  {
+    "id": "Q13",
+    "tenet": "T5_MonitorIntegrity",
+    "text": "Do you continuously monitor the integrity and security posture of devices, servers, and applications, rather than relying on periodic manual audits?",
+    "note": "T5 rated Partial or None against most AI-specific tactics in the matrix (e.g. Prompt Injection, Impact) - questions here should distinguish general asset monitoring from AI-behaviour monitoring."
+  },
+  {
+    "id": "Q14",
+    "tenet": "T5_MonitorIntegrity",
+    "text": "Is the output behaviour of AI/LLM systems monitored for anomalies (e.g. unexpected instructions being followed, unusual response patterns) as part of your integrity monitoring programme?"
+  },
+  {
+    "id": "Q15",
+    "tenet": "T5_MonitorIntegrity",
+    "text": "Do you verify the cryptographic integrity (hashes, signatures, provenance) of third-party models, datasets, and dependencies before they are deployed?"
+  },
+  {
+    "id": "Q16",
+    "tenet": "T6_DynamicAuth",
+    "text": "Is multi-factor authentication enforced for all users and service accounts accessing sensitive systems, including AI/ML infrastructure and model APIs?"
+  },
+  {
+    "id": "Q17",
+    "tenet": "T6_DynamicAuth",
+    "text": "Are authentication and authorisation decisions re-evaluated continuously during a session (risk-based/adaptive authentication), rather than only at initial login?"
+  },
+  {
+    "id": "Q18",
+    "tenet": "T6_DynamicAuth",
+    "text": "Do non-human identities (service accounts, AI agents, automated pipelines) go through the same strict authentication requirements as human users?"
+  },
+  {
+    "id": "Q19",
+    "tenet": "T7_PostureData",
+    "text": "Does your organisation collect and centralise telemetry on network state, asset health, and user/service behaviour to inform security decisions?"
+  },
+  {
+    "id": "Q20",
+    "tenet": "T7_PostureData",
+    "text": "Are inputs and outputs of AI systems (prompts, responses, tool calls) logged in sufficient detail to support incident investigation after the fact?"
+  },
+  {
+    "id": "Q21",
+    "tenet": "T7_PostureData",
+    "text": "Is posture and telemetry data from AI/ML pipelines fed back into your broader security monitoring and policy systems, rather than kept siloed within the AI/data science team?"
+  }
+]
